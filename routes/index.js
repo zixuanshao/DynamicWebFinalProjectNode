@@ -26,7 +26,6 @@ router.get('/', function(req, res){
             user_info: doc.data()
           }) 
         });
-        users.set('Access-Control-Allow-Origin', '*'); 
         //display all the contents in the 'users' array
         res.send(users)
       })

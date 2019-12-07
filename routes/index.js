@@ -13,21 +13,21 @@ admin.initializeApp({
 
 let db = admin.firestore();
 
-router.get('/', function(req, res){
-    var users = [];
-    let usersRef = db.collection('users');
-    let allUsers = usersRef.get()
+router.get('/api', function(req, res){
+    var posts = [];
+    let docRef = db.collection('users');
+    let allPosts = docRef.get()
     .then(snapshot => {
         snapshot.forEach(doc => {
           // console.log(doc.id, '=>', doc.data());
           //add content
-          users.push({
+          posts.push({
             id: doc.id,
-            user_info: doc.data()
+            post_info: doc.data()
           }) 
         });
         //display all the contents in the 'users' array
-        res.send(users)
+        res.send(posts)
       })
     .catch(err => {
         console.log('Error getting documents', err);
@@ -37,12 +37,12 @@ router.get('/', function(req, res){
 
 //getting a single post based on ID
 //Route: /post/:id
-router.get('/:id', function(req, res) {
+router.get('/api/post/:id', function(req, res) {
   //get doc id 
   let queryId = req.params.id;
   //create a ref based on id
-  let usersRef = db.collection('users').doc(queryId);
-  usersRef.get()
+  let docRef = db.collection('users').doc(queryId);
+  docRef.get()
     .then(doc => {
       if (!doc.exists) {
         //if id invalid display this message

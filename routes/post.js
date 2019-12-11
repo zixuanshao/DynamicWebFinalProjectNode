@@ -30,7 +30,7 @@ router.post('/', (req, res) =>{
     let bottomBrandVal = req.body.BottomBrand;
     let shoesVal = req.body.Shoes;
     let shoesBrandVal = req.body.ShoesBrand;
-    let imageVal = req.body.Image;
+    let imageVal = req.body.ImageURL;
 
     db.collection("users")
     .add({
